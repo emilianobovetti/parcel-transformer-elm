@@ -1,29 +1,25 @@
-const body = document.body;
+const OVERLAY_ID = '__elm__error__overlay__';
 
-while (body.firstChild) {
-  body.firstChild.remove();
+let overlay = document.getElementById(OVERLAY_ID);
+
+if (overlay) {
+  overlay.remove();
 }
 
-const styles = document.createElement('style');
-styles.appendChild(document.createTextNode(`
-.errors-block {
-  margin: 2em;
-}
-`));
+overlay = document.createElement('div');
+overlay.id = OVERLAY_ID;
 
-const errorsBlock = document.createElement('div');
+overlay.innerHTML = `<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">
+  <div>
+    <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
+      🚨 Elm Compiler Error
+    </div>
+    <pre>__error_message__</pre>
+  </div>
+</div>
+`;
 
-errorsBlock.classList.add('errors-block');
-
-`__error__`.split('\n').forEach(line => {
-  const errorLine = document.createElement('p');
-
-  errorLine.appendChild(document.createTextNode(line));
-  errorsBlock.appendChild(errorLine);
-});
-
-body.appendChild(styles);
-body.appendChild(errorsBlock);
+document.body.appendChild(overlay);
 
 const noop = () => {};
 

@@ -172,7 +172,7 @@ var _default = new (_plugin().Transformer)({
       const errorPage = _path().default.join(__dirname, 'error-page.js');
       const codeBuf = await asset.fs.readFile(errorPage, 'utf-8');
       const errMessage = err.message.replaceAll('`', '\\`').replaceAll('Compiling ...', '');
-      const code = codeBuf.toString().replaceAll('__error__', errMessage);
+      const code = codeBuf.toString().replaceAll('__error_message__', errMessage);
 
       asset.type = 'js';
       asset.setCode(code);
