@@ -1,4 +1,4 @@
-const OVERLAY_ID = '__elm__error__overlay__';
+const OVERLAY_ID = '__parcel__error__overlay__';
 
 let overlay = document.getElementById(OVERLAY_ID);
 
@@ -14,7 +14,7 @@ overlay.innerHTML = `<div style="background: black; opacity: 0.85; font-size: 16
     <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
       🚨 Elm Compiler Error
     </div>
-    <pre>__error_message__</pre>
+    <pre>__error__message__</pre>
   </div>
 </div>
 `;
@@ -27,7 +27,7 @@ const ports = new Proxy({}, {
   get(target, prop, receiver) {
     return {
       send: noop,
-      subscribe: noop,
+      subscribe: noop
     };
   }
 });
@@ -41,7 +41,7 @@ const initElmApp = name => {
 this.Elm = new Proxy({}, {
   get(target, prop, receiver) {
     return {
-      init: () => initElmApp(prop),
+      init: () => initElmApp(prop)
     };
   }
 });

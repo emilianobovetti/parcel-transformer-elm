@@ -172,7 +172,7 @@ var _default = new (_plugin().Transformer)({
       const errorPage = _path().default.join(__dirname, 'error-page.js');
       const codeBuf = await asset.fs.readFile(errorPage, 'utf-8');
       const errMessage = err.message.replaceAll('`', '\\`').replaceAll('Compiling ...', '');
-      const code = codeBuf.toString().replaceAll('__error_message__', errMessage);
+      const code = codeBuf.toString().replaceAll('__error__message__', errMessage);
 
       asset.type = 'js';
       asset.setCode(code);
@@ -193,7 +193,7 @@ function elmBinaryPath() {
       diagnostic: {
         message: "Can't find 'elm' binary.",
         hints: ["You can add it as an dependency for your project by running 'yarn add -D elm' or 'npm add -D elm'", 'If you want to install it globally then follow instructions on https://elm-lang.org/'],
-        origin: '@parcel/elm-transformer'
+        origin: 'parcel-transformer-elm'
       }
     });
   }
